@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "bGo+l6r21kxCagkM6ueEbB9T3zjadRtgYeIEj0Azl3XwtGVk32cuOsk6y+HgjDaSZ/BHZMDnwCBlCYUSGAc6oA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\glota\\source\\repos\\PokemonPedia\\PokemonPedia.Api\\PokemonPedia.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\glota\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512"
+  ],
+  "logs": []
+}
