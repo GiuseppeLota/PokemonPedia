@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace PokemonPedia.Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class PokemonController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+        [HttpGet("{name}")]
+        public string Translate(string name)
         {
-            return "i'm fine";
+            return name;
         }
     }
 }
