@@ -12,7 +12,6 @@ namespace PokemonPedia.Infrastructure.Services
 {
     public class PokemonProvider : IPokemonProvider
     {
-        private const string preferredLanguage = "en";
         private readonly IConfiguration _configuration;
 
         public PokemonProvider(IConfiguration configuration)
@@ -44,7 +43,7 @@ namespace PokemonPedia.Infrastructure.Services
 
         private string PokemonDescriptionFor(ExternalPokemonModel pokemonData)
         {
-            var language = _configuration["PreferredLanguage"];
+            var preferredLanguage = _configuration["PreferredLanguage"];
 
             return pokemonData
                             .FlavorTextEntries
