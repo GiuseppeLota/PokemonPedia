@@ -13,6 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonPedia.Core", "Source
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonPedia.Infrastructure", "Sources\PokemonPedia.Infrastructure\PokemonPedia.Infrastructure.csproj", "{AAAA3911-6C4D-4E89-B03B-8C1D79D8F0FC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4658F436-30F8-4B88-9C47-04341B955CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonPedia.Application.Tests", "Tests\PokemonPedia.Application.Tests\PokemonPedia.Application.Tests.csproj", "{A2F36538-9604-4A88-BF30-3239A661548C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonPedia.Infrastructure.Tests", "Tests\PokemonPedia.Infrastructure.Tests\PokemonPedia.Infrastructure.Tests.csproj", "{F9A976D9-3A84-4E11-9853-632A2D310B48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonPedia.Api.Tests", "Tests\PokemonPedia.Api.Tests\PokemonPedia.Api.Tests.csproj", "{6C54436E-F74C-460B-B013-6E1192716D72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +43,18 @@ Global
 		{AAAA3911-6C4D-4E89-B03B-8C1D79D8F0FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAAA3911-6C4D-4E89-B03B-8C1D79D8F0FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAAA3911-6C4D-4E89-B03B-8C1D79D8F0FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2F36538-9604-4A88-BF30-3239A661548C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2F36538-9604-4A88-BF30-3239A661548C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2F36538-9604-4A88-BF30-3239A661548C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2F36538-9604-4A88-BF30-3239A661548C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A976D9-3A84-4E11-9853-632A2D310B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A976D9-3A84-4E11-9853-632A2D310B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A976D9-3A84-4E11-9853-632A2D310B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A976D9-3A84-4E11-9853-632A2D310B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C54436E-F74C-460B-B013-6E1192716D72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C54436E-F74C-460B-B013-6E1192716D72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C54436E-F74C-460B-B013-6E1192716D72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C54436E-F74C-460B-B013-6E1192716D72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +64,9 @@ Global
 		{3B00E067-32CE-41F4-9D51-4E228193FEFA} = {BD685FB5-790B-472E-8155-008D17956035}
 		{509F96DE-BCF3-4F88-A603-8A772D7BF54F} = {BD685FB5-790B-472E-8155-008D17956035}
 		{AAAA3911-6C4D-4E89-B03B-8C1D79D8F0FC} = {BD685FB5-790B-472E-8155-008D17956035}
+		{A2F36538-9604-4A88-BF30-3239A661548C} = {4658F436-30F8-4B88-9C47-04341B955CB1}
+		{F9A976D9-3A84-4E11-9853-632A2D310B48} = {4658F436-30F8-4B88-9C47-04341B955CB1}
+		{6C54436E-F74C-460B-B013-6E1192716D72} = {4658F436-30F8-4B88-9C47-04341B955CB1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A1FC8E0-FA46-4412-A81D-2D05EAEFCE26}
