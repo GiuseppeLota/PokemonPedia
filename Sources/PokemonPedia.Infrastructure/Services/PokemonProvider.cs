@@ -6,20 +6,27 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
+using Microsoft.Extensions.Configuration;
 
 namespace PokemonPedia.Infrastructure.Services
 {
     public class PokemonProvider : IPokemonProvider
     {
         private const string preferredLanguage = "en";
+        private readonly IConfiguration _configuration;
+
+        public PokemonProvider(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
         public async Task<PokemonData> GetPokemon(string pokemonName)
         {
             using var client = new HttpClient();
 
-            const string pokeUri = "https://pokeapi.co/api/v2/pokemon-species/{0}";
+            var pokeUri = string.Concat(_configuration["PokemonApiUrl"], $"/{pokemonName}");
 
-            var result = await client.GetAsync(string.Format(pokeUri, pokemonName));
+            var result = await client.GetAsync(pokeUri);
 
             if (!result.IsSuccessStatusCode)
                 return default;
