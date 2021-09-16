@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using PokemonPedia.Api.Contracts;
+using PokemonPedia.Application.Model;
 
 namespace PokemonPedia.Api.Mapper
 {
@@ -6,8 +8,7 @@ namespace PokemonPedia.Api.Mapper
     {
         public PokemonPediaProfile() 
         {
-            //CreateMap<ProductModel, ProductViewModel>().ReverseMap();
-            //CreateMap<CategoryModel, CategoryViewModel>().ReverseMap();
+            CreateMap<PokemonResponse, PokemonResult>().ReverseMap();
         }
     }
 }

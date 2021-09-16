@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PokemonPedia.Application.Model
+﻿namespace PokemonPedia.Application.Model
 {
     /// <summary>
     /// Pokemon result object from the api
@@ -15,7 +11,7 @@ namespace PokemonPedia.Application.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Description of the pokemon
+        /// Translated pokemon description
         /// </summary>
         public string Description { get; set; }
 

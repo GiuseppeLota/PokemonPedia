@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using PokemonPedia.Api.Contracts;
+using PokemonPedia.Application.Exceptions;
+using PokemonPedia.Application.Interfaces;
 
 namespace PokemonPedia.Api.Controllers
 {
@@ -11,10 +10,27 @@ namespace PokemonPedia.Api.Controllers
     [ApiController]
     public class PokemonController : ControllerBase
     {
-        [HttpGet("{name}")]
-        public string Translate(string name)
+        private readonly IPokemonService _pokemonService;
+        private readonly IMapper _mapper;
+
+        public PokemonController(IPokemonService pokemonService, IMapper mapper)
         {
-            return name;
+            _pokemonService = pokemonService;
+            _mapper = mapper;
+        }
+
+        [HttpGet("{name}")]
+        public IActionResult Translate(string name)
+        {
+            try
+            {
+                var result = _pokemonService.FetchPokemon(name);
+                return Ok(_mapper.Map<PokemonResponse>(result));
+            }
+            catch (PokemonNotFoundException)
+            {
+                return NotFound(name);
+            }
         }
     }
 }

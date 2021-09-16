@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PokemonPedia.Infrastructure.Data;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,19 @@ namespace PokemonPedia.Infrastructure.Services
             var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
 
             var response = await client.PostAsync(translatorUri, content);
-            var result = JsonConvert.DeserializeObject<dynamic>(response.Content.ReadAsStringAsync().Result);
+            var result = JsonConvert.DeserializeObject<ExternalTranslationModel>(response.Content.ReadAsStringAsync().Result);
 
             if (HasError(result)) 
             {
                 return description;
             }
 
-            return result.contents.translated;
+            return result.Contents.Translated;
         }
 
-        private bool HasError(dynamic result)
+        private bool HasError(ExternalTranslationModel result)
         {
-            return result.error != null;
+            return !string.IsNullOrEmpty(result?.Error?.Message);
         }
     }
 }

@@ -1,7 +1,11 @@
-﻿
-namespace PokemonPedia.Core.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace PokemonPedia.Api.Contracts
 {
-    public class PokemonData
+    public class PokemonResponse
     {
         /// <summary>
         /// Name of the pokemon
@@ -9,9 +13,9 @@ namespace PokemonPedia.Core.Entities
         public string Name { get; set; }
 
         /// <summary>
-        /// Untranslated Description of the pokemon
+        /// Description of the pokemon
         /// </summary>
-        public string RawDescription { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Habitat of the pokemon
@@ -24,3 +28,4 @@ namespace PokemonPedia.Core.Entities
         public bool IsLegendary { get; set; }
     }
 }
+
