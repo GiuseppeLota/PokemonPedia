@@ -40,15 +40,18 @@ namespace PokemonPedia.Infrastructure.Services
                 Name = pokemonData.Name,
                 RawDescription = PokemonDescriptionFor(pokemonData)
             };
-
-            static string PokemonDescriptionFor(ExternalPokemonModel pokemonData)
-            {
-                return pokemonData
-                                .FlavorTextEntries
-                                .Where(it => it.Language.Name.Equals(preferredLanguage, StringComparison.InvariantCultureIgnoreCase))
-                                .Select(el => el.FlavorText)
-                                .FirstOrDefault();
-            }
         }
+
+        private string PokemonDescriptionFor(ExternalPokemonModel pokemonData)
+        {
+            var language = _configuration["PreferredLanguage"];
+
+            return pokemonData
+                            .FlavorTextEntries
+                            .Where(it => it.Language.Name.Equals(preferredLanguage, StringComparison.InvariantCultureIgnoreCase))
+                            .Select(el => el.FlavorText)
+                            .FirstOrDefault();
+        }
+
     }
 }
