@@ -16,5 +16,16 @@ namespace PokemonPedia.Core.Interfaces
         /// <param name="description"></param>
         /// <returns></returns>
         public Task<string> ProvideTranslation(string description);
+
+        /// <summary>
+        /// Translation provider name
+        /// </summary>
+        TranslationName TranslationName { get; }
+    }
+
+    public enum TranslationName
+    {
+        Shakespeare,
+        Yoda,
     }
 }

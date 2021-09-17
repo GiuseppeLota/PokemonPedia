@@ -3,12 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PokemonPedia.Application.Interfaces;
-using PokemonPedia.Application.Services;
+using PokemonPedia.Application.Extensions;
 using PokemonPedia.Core.Interfaces;
 using PokemonPedia.Infrastructure.Services;
 using PokemonPedia.Infrastructure.Services.Strategies;
-using System;
 
 namespace PokemonPedia.Api
 {
@@ -26,19 +24,11 @@ namespace PokemonPedia.Api
         {
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
-            services.AddSingleton<IPokemonService, PokemonService>();
+            services.AddApplicationLevelServices();
             services.AddSingleton<IPokemonProvider, PokemonProvider>();
             services.AddSingleton<TranslationClient>();
-            services.AddSingleton<YodaTranslationProvider>();
-            services.AddSingleton<ShakespeareTranslationProvider>();
-            services.AddSingleton<Func<string, ITranslationProvider>>(serviceProvider => habitat =>
-            {
-                return habitat switch
-                {
-                    "cave" => serviceProvider.GetService<YodaTranslationProvider>(),
-                    _ => serviceProvider.GetService<ShakespeareTranslationProvider>()
-                };
-            });
+            services.AddSingleton<ITranslationProvider, YodaTranslationProvider>();
+            services.AddSingleton<ITranslationProvider, ShakespeareTranslationProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

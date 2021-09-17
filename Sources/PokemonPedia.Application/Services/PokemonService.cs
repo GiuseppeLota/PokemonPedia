@@ -2,19 +2,18 @@
 using PokemonPedia.Application.Interfaces;
 using PokemonPedia.Application.Model;
 using PokemonPedia.Core.Interfaces;
-using System;
 
 namespace PokemonPedia.Application.Services
 {
     public class PokemonService : IPokemonService
     {
-        private readonly Func<string, ITranslationProvider> _traslationProviderAccessor;
+        private readonly ITranslationResolver _translationResolver;
         private readonly IPokemonProvider _pokemonProvider;
 
-        public PokemonService(Func<string, ITranslationProvider> traslationProviderAccessor,
+        public PokemonService(ITranslationResolver translationResolver,
             IPokemonProvider pokemonProvider)
         {
-            _traslationProviderAccessor = traslationProviderAccessor;
+            _translationResolver = translationResolver;
             _pokemonProvider = pokemonProvider;
         }
 
@@ -27,7 +26,9 @@ namespace PokemonPedia.Application.Services
 
             var pokemon = response.Result;
 
-            var translatedDescription = _traslationProviderAccessor(pokemon.Habitat)
+            var translationProvider = _translationResolver.GetTranslationProvider(pokemon.Habitat);
+
+            var translatedDescription = translationProvider
                 .ProvideTranslation(pokemon.RawDescription)
                 .Result;
 

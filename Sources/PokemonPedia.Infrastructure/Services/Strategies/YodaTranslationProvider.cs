@@ -9,6 +9,8 @@ namespace PokemonPedia.Infrastructure.Services.Strategies
         private readonly TranslationClient _translationClient;
         private readonly IConfiguration _configuration;
 
+        public TranslationName TranslationName => TranslationName.Yoda;
+
         public YodaTranslationProvider(TranslationClient translationClient, IConfiguration configuration)
         {
             _translationClient = translationClient;
