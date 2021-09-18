@@ -1,4 +1,5 @@
 ﻿using Moq;
+using PokemonPedia.Application.Exceptions;
 using PokemonPedia.Application.Services;
 using PokemonPedia.Core.Interfaces;
 using Xunit;
@@ -41,6 +42,19 @@ namespace PokemonPedia.Application.Tests.Services
             Assert.Equal(result.Description, POKEMON_TRANSLATED_DESCRIPTION);
             Assert.Equal(result.Name, POKEMON_NAME);
             Assert.True(result.IsLegendary);
+        }
+
+        /// <summary>
+        /// Pokemon not found: it should raise a specific expection
+        /// </summary>
+        [Fact]
+        public void Pokemon_found_not_found()
+        {
+            _mockPokemonProvider.Setup(x => x.GetPokemon(POKEMON_NAME));
+
+            var pokemonService = new PokemonService(_ITranslationResolver.Object, _mockPokemonProvider.Object);
+
+            Assert.Throws<PokemonNotFoundException>(() => pokemonService.FetchPokemon(POKEMON_NAME));
         }
     }
 }
