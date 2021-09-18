@@ -46,6 +46,18 @@ namespace PokemonPedia.Application.Tests.Services
             Assert.Equal(TranslationName.Shakespeare, translationProvider.TranslationName);
         }
 
+        /// <summary>
+        /// If the pokemon habitat is null, the translation should be provided by the Shakespeare translation provider
+        /// </summary>
+        [Fact]
+        public void Pokemon_null_Shakespeare_tranlation()
+        {
+            var translationResolver = new TranslationResolver(_providers);
+
+            var translationProvider = translationResolver.GetTranslationProvider(null);
+
+            Assert.Equal(TranslationName.Shakespeare, translationProvider.TranslationName);
+        }
 
     }
 }
