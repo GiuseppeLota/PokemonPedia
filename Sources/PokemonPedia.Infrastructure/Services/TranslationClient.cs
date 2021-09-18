@@ -36,10 +36,5 @@ namespace PokemonPedia.Infrastructure.Services
 
             return result.Contents.Translated;
         }
-
-        private bool HasError(ExternalTranslationModel result)
-        {
-            return !string.IsNullOrEmpty(result?.Error?.Message);
-        }
     }
 }
