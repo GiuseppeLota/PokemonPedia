@@ -9,13 +9,15 @@ namespace PokemonPedia.Infrastructure.Services.Strategies
         private readonly TranslationClient _translationClient;
         private readonly IConfiguration _configuration;
 
-        public TranslationName TranslationName => TranslationName.Shakespeare;
+
 
         public ShakespeareTranslationProvider(TranslationClient translationClient, IConfiguration configuration)
         {
             _translationClient = translationClient;
             _configuration = configuration;
         }
+
+        public TranslationName TranslationName { get => TranslationName.Shakespeare; set => TranslationName = value; }
 
         public async Task<string> ProvideTranslation(string description)
         {

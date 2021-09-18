@@ -20,7 +20,7 @@ namespace PokemonPedia.Core.Interfaces
         /// <summary>
         /// Translation provider name
         /// </summary>
-        TranslationName TranslationName { get; }
+        TranslationName TranslationName { get; set; }
     }
 
     public enum TranslationName
