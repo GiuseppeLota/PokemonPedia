@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using PokemonPedia.Api.Contracts;
 using PokemonPedia.Application.Exceptions;
 using PokemonPedia.Application.Interfaces;
+using PokemonPedia.Application.Model;
 
 namespace PokemonPedia.Api.Controllers
 {
     [Route("[controller]/[action]")]
     [ApiController]
     public class PokemonController : ControllerBase
-    {
+    {   
         private readonly IPokemonService _pokemonService;
         private readonly IMapper _mapper;
 
@@ -29,7 +30,11 @@ namespace PokemonPedia.Api.Controllers
             }
             catch (PokemonNotFoundException)
             {
-                return NotFound(name);
+                return NotFound(new ErrorResponse()
+                {
+                    ErrorCode = Constants.POKEMON_NOT_FOUND,
+                    ErrorMessage = $"Pokemon with name {name} has not been found"
+                });
             }
         }
     }

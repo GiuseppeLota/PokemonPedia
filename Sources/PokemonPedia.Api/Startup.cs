@@ -23,6 +23,7 @@ namespace PokemonPedia.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpClient<TranslationClient>();
             services.AddAutoMapper(typeof(Startup));
             services.AddApplicationLevelServices();
             services.AddSingleton<IPokemonProvider, PokemonProvider>();
