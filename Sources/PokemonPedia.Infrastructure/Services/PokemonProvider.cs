@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace PokemonPedia.Infrastructure.Services
 {
+    /// <inheritdoc/>
     public class PokemonProvider : IPokemonProvider
     {
         private readonly IConfiguration _configuration;
@@ -19,6 +20,7 @@ namespace PokemonPedia.Infrastructure.Services
             _configuration = configuration;
         }
 
+        /// <inheritdoc/>
         public async Task<PokemonData> GetPokemon(string pokemonName)
         {
             using var client = new HttpClient();

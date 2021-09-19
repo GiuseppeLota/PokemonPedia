@@ -5,6 +5,7 @@ using PokemonPedia.Core.Interfaces;
 
 namespace PokemonPedia.Application.Services
 {
+    /// <inheritdoc/>
     public class PokemonService : IPokemonService
     {
         private readonly ITranslationResolver _translationResolver;
@@ -17,6 +18,7 @@ namespace PokemonPedia.Application.Services
             _pokemonProvider = pokemonProvider;
         }
 
+        /// <inheritdoc/>
         public PokemonResult FetchPokemon(string name)
         {
             var response = _pokemonProvider.GetPokemon(name);

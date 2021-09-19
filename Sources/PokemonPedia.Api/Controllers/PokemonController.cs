@@ -10,7 +10,7 @@ namespace PokemonPedia.Api.Controllers
     [Route("[controller]/[action]")]
     [ApiController]
     public class PokemonController : ControllerBase
-    {   
+    {
         private readonly IPokemonService _pokemonService;
         private readonly IMapper _mapper;
 
@@ -20,6 +20,11 @@ namespace PokemonPedia.Api.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get detailed information for a provided pokemon name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet("{name}")]
         public IActionResult Translate(string name)
         {
@@ -37,5 +42,6 @@ namespace PokemonPedia.Api.Controllers
                 });
             }
         }
+
     }
 }

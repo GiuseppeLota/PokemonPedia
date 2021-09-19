@@ -16,9 +16,10 @@ namespace PokemonPedia.Infrastructure.Services
         }
 
         /// <summary>
-        /// Provide a translation for a provided description
+        /// provide a translation for an incoming description
         /// </summary>
         /// <param name="description"></param>
+        /// <param name="translatorUri"></param>
         /// <returns></returns>
         public async Task<string> TranslationFor(string description, string translatorUri)
         {

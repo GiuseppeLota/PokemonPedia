@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PokemonPedia.Application.Model
+﻿namespace PokemonPedia.Application.Model
 {
     public class Constants
     {

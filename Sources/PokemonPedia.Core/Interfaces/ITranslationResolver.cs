@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PokemonPedia.Core.Interfaces
+﻿namespace PokemonPedia.Core.Interfaces
 {
     /// <summary>
     /// Encapsulate the Translation resolver logic
