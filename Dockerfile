@@ -9,11 +9,11 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
-WORKDIR /src
-COPY ["PokemonPedia.Api/PokemonPedia.Api.csproj", "PokemonPedia.Api/"]
+WORKDIR "/src"
+COPY ["./Sources/PokemonPedia.Api/PokemonPedia.Api.csproj", "PokemonPedia.Api/"]
 RUN dotnet restore "PokemonPedia.Api/PokemonPedia.Api.csproj"
-COPY . .
-WORKDIR "/src/PokemonPedia.Api"
+COPY ./Sources .
+WORKDIR "/src/PokemonPedia.Api/"
 RUN dotnet build "PokemonPedia.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
