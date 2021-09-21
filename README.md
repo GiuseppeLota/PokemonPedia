@@ -45,7 +45,7 @@ curl http://localhost:5000/pokemon/translate/ditto
 
 1) Install Docker locally. More details here -> [Install Docker](https://docs.docker.com/engine/install/)
 
-2) navigate to the root directory of the project and run:
+2) navigate to the root directory of the project and create the docker image:
 
 ```
 docker build -t pokemonpedia_img .
