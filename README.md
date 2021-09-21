@@ -41,6 +41,22 @@ dotnet run --project Sources/PokemonPedia.Api/PokemonPedia.Api.csproj
 curl http://localhost:5000/pokemon/translate/ditto
 ```
 
+### Run with docker
+
+1) Install Docker locally. More details here -> [Install Docker](https://docs.docker.com/engine/install/)
+
+2) navigate to the root directory of the project and run:
+
+```
+docker build -t pokemonpedia_img .
+```
+
+2) Then you can create and run the container with:
+
+```
+docker run --name pokemonpedia_container -p 5000:80 pokemonpedia_img
+```
+
 ### Run Unit Tests
 
 1) To launch Api project tests:

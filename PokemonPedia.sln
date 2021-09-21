@@ -15,11 +15,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonPedia.Infrastructure
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4658F436-30F8-4B88-9C47-04341B955CB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonPedia.Application.Tests", "Tests\PokemonPedia.Application.Tests\PokemonPedia.Application.Tests.csproj", "{A2F36538-9604-4A88-BF30-3239A661548C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonPedia.Application.Tests", "Tests\PokemonPedia.Application.Tests\PokemonPedia.Application.Tests.csproj", "{A2F36538-9604-4A88-BF30-3239A661548C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonPedia.Infrastructure.Tests", "Tests\PokemonPedia.Infrastructure.Tests\PokemonPedia.Infrastructure.Tests.csproj", "{F9A976D9-3A84-4E11-9853-632A2D310B48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonPedia.Infrastructure.Tests", "Tests\PokemonPedia.Infrastructure.Tests\PokemonPedia.Infrastructure.Tests.csproj", "{F9A976D9-3A84-4E11-9853-632A2D310B48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonPedia.Api.Tests", "Tests\PokemonPedia.Api.Tests\PokemonPedia.Api.Tests.csproj", "{6C54436E-F74C-460B-B013-6E1192716D72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonPedia.Api.Tests", "Tests\PokemonPedia.Api.Tests\PokemonPedia.Api.Tests.csproj", "{6C54436E-F74C-460B-B013-6E1192716D72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution_items", "Solution_items", "{2A54A19C-9E66-4A08-9064-146C3BD1A686}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		Dockerfile = Dockerfile
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
