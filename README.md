@@ -1,8 +1,8 @@
 # PokemonPedia
 
-This .NET core project that expose a single api:
+This .NET core project that expose the following Api:
 
-GET /pokemon/translate/{pokemonName}
+1) GET /pokemon/translate/{pokemonName}
 
 Parameters:
 
@@ -12,7 +12,26 @@ Parameters:
 
 Description:
 
-This Api will retrieve useful pokemon informations for the provided pokemon name:
+This Api will retrieve useful pokemon informations for the provided pokemon name with a fun description:
+
+| Fields  |   
+|---|
+| Name  |
+| Description  |
+| Habitat  |
+| Is_Legendary  |
+
+1) GET /pokemon/{pokemonName}
+
+Parameters:
+
+| parameter name | type | description  |
+|---|---|---|
+| pokemonName | string | Indicates the pokemon name |
+
+Description:
+
+This Api will retrieve useful pokemon informations for the provided pokemon name with the standard description:
 
 | Fields  |   
 |---|
