@@ -25,10 +25,41 @@ namespace PokemonPedia.Application.Tests.Services
         }
 
         /// <summary>
+        /// Get info operation: case pokemon is found
+        /// </summary>
+        [Fact]
+        public async void GetInfo_pokemon_found()
+        {
+            _mockPokemonProvider.Setup(x => x.GetPokemon(POKEMON_NAME)).ReturnsAsync(new Core.Entities.PokemonData() { Habitat = POKEMON_HABITAT, IsLegendary = true, Name = POKEMON_NAME, RawDescription = POKEMON_RAW_DESCRIPTION });
+
+            var pokemonService = new PokemonService(_ITranslationResolver.Object, _mockPokemonProvider.Object);
+
+            var result = await pokemonService.GetInfo(POKEMON_NAME);
+
+            Assert.Equal(result.Habitat, POKEMON_HABITAT);
+            Assert.Equal(result.Description, POKEMON_RAW_DESCRIPTION);
+            Assert.Equal(result.Name, POKEMON_NAME);
+            Assert.True(result.IsLegendary);
+        }
+
+        /// <summary>
+        /// Get info operation: case pokemon is not found
+        /// </summary>
+        [Fact]
+        public void GetInfo_pokemon_not_found()
+        {
+            _mockPokemonProvider.Setup(x => x.GetPokemon(POKEMON_NAME));
+
+            var pokemonService = new PokemonService(_ITranslationResolver.Object, _mockPokemonProvider.Object);
+
+            Assert.ThrowsAsync<PokemonNotFoundException>(() => pokemonService.GetInfo(POKEMON_NAME));
+        }
+
+        /// <summary>
         /// A pokemon is found with habitat information
         /// </summary>
         [Fact]
-        public void Pokemon_found_with_complete_informations()
+        public async void GetFunInfo_pokemon_found()
         {
             _mockPokemonProvider.Setup(x => x.GetPokemon(POKEMON_NAME)).ReturnsAsync(new Core.Entities.PokemonData() { Habitat= POKEMON_HABITAT, IsLegendary=true, Name= POKEMON_NAME, RawDescription= POKEMON_RAW_DESCRIPTION });
             _ITranlsationProvider.Setup(x => x.ProvideTranslation(POKEMON_RAW_DESCRIPTION)).ReturnsAsync(POKEMON_TRANSLATED_DESCRIPTION);
@@ -36,7 +67,7 @@ namespace PokemonPedia.Application.Tests.Services
 
             var pokemonService = new PokemonService(_ITranslationResolver.Object, _mockPokemonProvider.Object);
 
-            var result = pokemonService.FetchPokemon(POKEMON_NAME);
+            var result = await pokemonService.GetFunInfo(POKEMON_NAME);
 
             Assert.Equal(result.Habitat, POKEMON_HABITAT);
             Assert.Equal(result.Description, POKEMON_TRANSLATED_DESCRIPTION);
@@ -48,13 +79,13 @@ namespace PokemonPedia.Application.Tests.Services
         /// Pokemon not found: it should raise a specific expection
         /// </summary>
         [Fact]
-        public void Pokemon_found_not_found()
+        public void GetFunInfo_pokemon_not_found()
         {
             _mockPokemonProvider.Setup(x => x.GetPokemon(POKEMON_NAME));
 
             var pokemonService = new PokemonService(_ITranslationResolver.Object, _mockPokemonProvider.Object);
 
-            Assert.Throws<PokemonNotFoundException>(() => pokemonService.FetchPokemon(POKEMON_NAME));
+            Assert.ThrowsAsync<PokemonNotFoundException>(() => pokemonService.GetFunInfo(POKEMON_NAME));
         }
     }
 }

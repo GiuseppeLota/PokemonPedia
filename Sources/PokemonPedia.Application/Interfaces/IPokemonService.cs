@@ -1,4 +1,5 @@
 ﻿using PokemonPedia.Application.Model;
+using System.Threading.Tasks;
 
 namespace PokemonPedia.Application.Interfaces
 {
@@ -7,11 +8,21 @@ namespace PokemonPedia.Application.Interfaces
     /// </summary>
     public interface IPokemonService
     {
+
         /// <summary>
-        /// Get an aggregated information for the provided pokemon name and the resolved translation
+        /// Get Standard pokemon information
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public PokemonResult FetchPokemon(string name);
+        public Task<PokemonResult> GetInfo(string name);
+
+
+        /// <summary>
+        /// Get basic pokemon information with a fun description
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Task<PokemonResult> GetFunInfo(string name);
+
     }
 }

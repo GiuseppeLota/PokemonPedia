@@ -4,6 +4,7 @@ using PokemonPedia.Api.Contracts;
 using PokemonPedia.Application.Exceptions;
 using PokemonPedia.Application.Interfaces;
 using PokemonPedia.Application.Model;
+using System.Threading.Tasks;
 
 namespace PokemonPedia.Api.Controllers
 {
@@ -21,25 +22,49 @@ namespace PokemonPedia.Api.Controllers
         }
 
         /// <summary>
-        /// Get detailed information for a provided pokemon name
+        /// Get pokemon base information with a standard translation
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        [HttpGet("{name}")]
-        public IActionResult Translate(string name)
+        [Route("/[controller]/{name}")]
+        public async Task<IActionResult> Index(string name)
         {
             try
             {
-                var result = _pokemonService.FetchPokemon(name);
+                var result = await _pokemonService.GetInfo(name);
                 return Ok(_mapper.Map<PokemonResponse>(result));
             }
             catch (PokemonNotFoundException)
             {
-                return NotFound(new ErrorResponse()
-                {
-                    ErrorCode = Constants.POKEMON_NOT_FOUND,
-                    ErrorMessage = $"Pokemon with name {name} has not been found"
-                });
+                return ErrorResponseFor(name);
+            }
+        }
+
+        private IActionResult ErrorResponseFor(string name)
+        {
+            return NotFound(new ErrorResponse()
+            {
+                ErrorCode = Constants.POKEMON_NOT_FOUND,
+                ErrorMessage = $"Pokemon with name {name} has not been found"
+            });
+        }
+
+        /// <summary>
+        /// Get pokemon base information with a fun translation
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpGet("{name}")]
+        public async Task<IActionResult> Translate(string name)
+        {
+            try
+            {
+                var result = await _pokemonService.GetFunInfo(name);
+                return Ok(_mapper.Map<PokemonResponse>(result));
+            }
+            catch (PokemonNotFoundException)
+            {
+                return ErrorResponseFor(name);
             }
         }
 

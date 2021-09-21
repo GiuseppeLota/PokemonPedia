@@ -2,6 +2,7 @@
 using PokemonPedia.Application.Interfaces;
 using PokemonPedia.Application.Model;
 using PokemonPedia.Core.Interfaces;
+using System.Threading.Tasks;
 
 namespace PokemonPedia.Application.Services
 {
@@ -19,24 +20,37 @@ namespace PokemonPedia.Application.Services
         }
 
         /// <inheritdoc/>
-        public PokemonResult FetchPokemon(string name)
+        public async Task<PokemonResult> GetFunInfo(string name)
         {
-            var response = _pokemonProvider.GetPokemon(name);
+            var pokemon = await _pokemonProvider.GetPokemon(name);
 
-            if (response.Result == null)
+            if (pokemon == null)
                 throw new PokemonNotFoundException();
-
-            var pokemon = response.Result;
 
             var translationProvider = _translationResolver.GetTranslationProvider(pokemon.Habitat);
 
-            var translatedDescription = translationProvider
-                .ProvideTranslation(pokemon.RawDescription)
-                .Result;
+            var translatedDescription = await translationProvider.ProvideTranslation(pokemon.RawDescription);
 
             return new PokemonResult()
             {
                 Description = translatedDescription,
+                Habitat = pokemon.Habitat,
+                IsLegendary = pokemon.IsLegendary,
+                Name = pokemon.Name
+            };
+        }
+
+        /// <inheritdoc/>
+        public async Task<PokemonResult> GetInfo(string name)
+        {
+            var pokemon = await _pokemonProvider.GetPokemon(name);
+
+            if (pokemon == null)
+                throw new PokemonNotFoundException();
+
+            return new PokemonResult()
+            {
+                Description = pokemon.RawDescription,
                 Habitat = pokemon.Habitat,
                 IsLegendary = pokemon.IsLegendary,
                 Name = pokemon.Name
