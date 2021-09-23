@@ -33,7 +33,9 @@ namespace PokemonPedia.Infrastructure.Services
                 return description;
             }
 
-            var result = JsonConvert.DeserializeObject<ExternalTranslationModel>(response.Content.ReadAsStringAsync().Result);
+            var rawResponseContent = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<ExternalTranslationModel>(rawResponseContent);
 
             return result.Contents.Translated;
         }
