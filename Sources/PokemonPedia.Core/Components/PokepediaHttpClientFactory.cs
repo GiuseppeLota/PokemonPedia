@@ -11,7 +11,9 @@ namespace PokemonPedia.Core.Components
             _httpClient = clientFactory.CreateClient();
         }
 
-        public HttpClient GetHttpClient() 
+        public PokepediaHttpClientFactory() { }
+
+        public virtual HttpClient GetHttpClient() 
         {
             return _httpClient;  
         } 
