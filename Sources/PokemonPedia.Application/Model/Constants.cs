@@ -2,6 +2,7 @@
 {
     public class Constants
     {
-        public static string POKEMON_NOT_FOUND = "POKEMON_NOT_FOUND";
+        public static readonly string INVALID_REQUEST = "INVALID_REQUEST";
+        public static readonly string POKEMON_NOT_FOUND = "POKEMON_NOT_FOUND";
     }
 }

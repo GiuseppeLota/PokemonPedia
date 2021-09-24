@@ -1,5 +1,6 @@
 using Moq;
 using Newtonsoft.Json;
+using PokemonPedia.Core.Components;
 using PokemonPedia.Infrastructure.Data;
 using PokemonPedia.Infrastructure.Services;
 using System;
@@ -16,9 +17,12 @@ namespace PokemonPedia.Infrastructure.Tests.Services
         private const string TEST_DESCRIPTION = "TEST_DESCRIPTION";
         private const string TRANSLATED_DESCR = "TRANSLATED_DESCR";
 
+        private readonly Mock<PokepediaHttpClientFactory> _pokepediaHttpClientFactory;
+
         public TranslationClientTests() 
         {
             TEST_URI = new Uri("https://api.test").ToString();
+            _pokepediaHttpClientFactory = new Mock<PokepediaHttpClientFactory>();
         }
 
         [Fact]
@@ -36,7 +40,9 @@ namespace PokemonPedia.Infrastructure.Tests.Services
                 return await Task.FromResult(responseMessage);
             }));
 
-            var translationClient = new TranslationClient(httpClient);
+            _pokepediaHttpClientFactory.Setup(x => x.GetHttpClient()).Returns(httpClient);
+
+            var translationClient = new TranslationClient(_pokepediaHttpClientFactory.Object);
 
             var result = translationClient.TranslationFor(TEST_DESCRIPTION, TEST_URI).GetAwaiter().GetResult();
 
@@ -51,7 +57,9 @@ namespace PokemonPedia.Infrastructure.Tests.Services
                 return await Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound));
             }));
 
-            var translationClient = new TranslationClient(httpClient);
+            _pokepediaHttpClientFactory.Setup(x => x.GetHttpClient()).Returns(httpClient);
+
+            var translationClient = new TranslationClient(_pokepediaHttpClientFactory.Object);
 
             var result = translationClient.TranslationFor(TEST_DESCRIPTION, TEST_URI).GetAwaiter().GetResult();
 

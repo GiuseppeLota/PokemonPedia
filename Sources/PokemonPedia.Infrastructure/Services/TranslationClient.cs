@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PokemonPedia.Core.Components;
 using PokemonPedia.Infrastructure.Data;
 using System.Net.Http;
 using System.Text;
@@ -10,9 +11,9 @@ namespace PokemonPedia.Infrastructure.Services
     {
         private readonly HttpClient _httpClient;
 
-        public TranslationClient(HttpClient client)
+        public TranslationClient(PokepediaHttpClientFactory pokepediaHttpClient)
         {
-            _httpClient = client;
+            _httpClient = pokepediaHttpClient.GetHttpClient();
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PokemonPedia.Application.Extensions;
+using PokemonPedia.Core.Components;
 using PokemonPedia.Core.Interfaces;
 using PokemonPedia.Infrastructure.Services;
 using PokemonPedia.Infrastructure.Services.Strategies;
@@ -23,9 +24,9 @@ namespace PokemonPedia.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddHttpClient<TranslationClient>();
             services.AddAutoMapper(typeof(Startup));
             services.AddApplicationLevelServices();
+            services.AddSingleton<PokepediaHttpClientFactory>();
             services.AddSingleton<IPokemonProvider, PokemonProvider>();
             services.AddSingleton<TranslationClient>();
             services.AddSingleton<ITranslationProvider, YodaTranslationProvider>();

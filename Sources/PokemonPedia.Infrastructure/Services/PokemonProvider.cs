@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using Microsoft.Extensions.Configuration;
+using PokemonPedia.Core.Components;
 
 namespace PokemonPedia.Infrastructure.Services
 {
@@ -14,20 +15,20 @@ namespace PokemonPedia.Infrastructure.Services
     public class PokemonProvider : IPokemonProvider
     {
         private readonly IConfiguration _configuration;
+        private readonly HttpClient _httpClient;
 
-        public PokemonProvider(IConfiguration configuration)
+        public PokemonProvider(IConfiguration configuration, PokepediaHttpClientFactory pokepediaHttpClient)
         {
             _configuration = configuration;
+            _httpClient = pokepediaHttpClient.GetHttpClient();
         }
 
         /// <inheritdoc/>
         public async Task<PokemonData> GetPokemon(string pokemonName)
         {
-            using var client = new HttpClient();
-
             var pokeUri = string.Concat(_configuration["PokemonApiUrl"], $"/{pokemonName}");
 
-            var result = await client.GetAsync(pokeUri);
+            var result = await _httpClient.GetAsync(pokeUri);
 
             if (!result.IsSuccessStatusCode)
                 return default;
